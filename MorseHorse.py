@@ -19,6 +19,48 @@ MorseCode= { 'A':'.-', 'B':'-...',
                     # '?':'..--..', '/':'-..-.', '-':'-....-',
                     # '(':'-.--.', ')':'-.--.-'
                     }
+
+def MorseCodeGen(data):
+	result = ''
+	for char in data:
+		if str(char).isalnum():
+			result += MorseCode[char.upper()]+'   '
+		elif char==' ':
+			result += '       '
+	# print result
+	return result
+
+def fromconsole():
+	msg ="Enter You Text"
+	title = "MorseHorse"
+	str_input = enterbox(msg, title)
+	str_input = str_input.rstrip("\n\r")
+	return str_input
+
+
+def toconsole(result):
+	print result
+
+
+def fromfile():
+	path=easygui.fileopenbox();
+	f=open(path,'r')
+	str_input=f.read()
+	str_input = str_input.rstrip("\n\r")
+	return str_input
+
+	
+
+def tofile(result):
+	f=open('Result.txt','w')
+	f.write(result)
+	f.close()
+	msg ="Your Result written to Result.txt"
+	title = "MorseHorse"
+	msgbox(msg,title, ok_button="Good job!")
+
+
+
 msg ="What Can I Do For You?"
 title = "MorseHorse"
 choices = ["Morse Code To Text","Text To Morse Code"]
@@ -37,70 +79,84 @@ else:
 	#################################################################################################################
 	# from console to console
 	if choice=="From console to console":
-		msg ="Enter You Text"
-		title = "MorseHorse"
-		str_input = enterbox(msg, title)
+		str_input=fromconsole()
 
-		result = ''
-		for char in str_input:
-			if str(char).isalnum():
-				result += MorseCode[char.upper()]+'   '
-			elif c==' ':
-				result += '       '
-		print result
+		# msg ="Enter You Text"
+		# title = "MorseHorse"
+		# str_input = enterbox(msg, title)
+		result=MorseCodeGen(str_input)
+		toconsole(result)
+		# result = ''
+		# for char in str_input:
+		# 	if str(char).isalnum():
+		# 		result += MorseCode[char.upper()]+'   '
+		# 	elif c==' ':
+		# 		result += '       '
+		# print result
 	#################################################################################################################
 	# from console to file
 	elif choice=="From console to text file":
-		msg ="Enter You Text"
-		title = "MorseHorse"
-		str_input = enterbox(msg, title)
-		f=open('Result.txt','w')
+		# msg ="Enter You Text"
+		# title = "MorseHorse"
+		# str_input = enterbox(msg, title)
+		str_input=fromconsole()
+		result=MorseCodeGen(str_input)
+		tofile(result)
 
-		result = ''
-		for char in str_input:
-			if str(char).isalnum():
-				result += MorseCode[char.upper()]+'   '
-			elif c==' ':
-				result += '       '
-		f.write(result)
-		f.close()
-		msg ="Your Result written to Result.txt"
-		title = "MorseHorse"
-		msgbox(msg,title, ok_button="Good job!")
+
+		# f=open('Result.txt','w')
+
+		# result = ''
+		# for char in str_input:
+		# 	if str(char).isalnum():
+		# 		result += MorseCode[char.upper()]+'   '
+		# 	elif c==' ':
+		# 		result += '       '
+		# f.write(result)
+		# f.close()
+		# msg ="Your Result written to Result.txt"
+		# title = "MorseHorse"
+		# msgbox(msg,title, ok_button="Good job!")
 	#################################################################################################################
 	# from file to console
 	elif choice=="From text file to console":
-		path=easygui.fileopenbox();
-		f=open(path,'r')
-		data=f.read()
-		data = data.rstrip("\n\r")
-		result = ''
-		for char in data:
-			if str(char).isalnum():
-				result += MorseCode[char.upper()]+'   '
-			elif char==' ':
-				result += '       '
-		print result
+		str_input=fromfile()
+		result=MorseCodeGen(str_input)
+		toconsole(result)
+		# path=easygui.fileopenbox();
+		# f=open(path,'r')
+		# data=f.read()
+		# data = data.rstrip("\n\r")
+		# result = ''
+		# for char in data:
+		# 	if str(char).isalnum():
+		# 		result += MorseCode[char.upper()]+'   '
+		# 	elif char==' ':
+		# 		result += '       '
+		# print result
 	#################################################################################################################
 	# from file to file
 	elif choice=="From text file to text file":
-		path=easygui.fileopenbox();
-		f=open(path,'r')
-		str_input=f.read()
-		str_input = str_input.rstrip("\n\r")
-		f=open('Result.txt','w')
+		str_input=fromfile()
+		result=MorseCodeGen(str_input)
+		tofile(result)
+		# path=easygui.fileopenbox();
+		# f=open(path,'r')
+		# str_input=f.read()
+		# str_input = str_input.rstrip("\n\r")
+		# f=open('Result.txt','w')
 
-		result = ''
-		for char in str_input:
-			if str(char).isalnum():
-				result += MorseCode[char.upper()]+'   '
-			elif c==' ':
-				result += '       '
-		f.write(result)
-		f.close()
-		msg ="Your Result written to Result.txt"
-		title = "MorseHorse"
-		msgbox(msg,title, ok_button="Good job!")
+		# result = ''
+		# for char in str_input:
+		# 	if str(char).isalnum():
+		# 		result += MorseCode[char.upper()]+'   '
+		# 	elif c==' ':
+		# 		result += '       '
+		# f.write(result)
+		# f.close()
+		# msg ="Your Result written to Result.txt"
+		# title = "MorseHorse"
+		# msgbox(msg,title, ok_button="Good job!")
 	else:
 		print "Error!!!"
 
