@@ -1,6 +1,6 @@
 #MorseHorse
-A Mahi's Product
-Morse Code Reader And Writer
+#A Mahi's Product
+(Morse Code Reader And Writer)
 
 Morse code is a method of transmitting text 
 information as a series of on-off tones, 
